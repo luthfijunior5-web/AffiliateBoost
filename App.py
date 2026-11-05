@@ -75,6 +75,11 @@ header { visibility: hidden; }
 }
 </style>
 """, unsafe_allow_html=True)
+/* FIX: Sembunyikan upload bawaan Streamlit yang dobel */
+[data-testid="stFileUploader"] > div:first-child { display: none; }
+[data-testid="stFileUploader"] section { padding: 0 !important; border: none !important; }
+div[data-testid="stFileUploaderDropzone"] { display: none !important; }
+.stButton > button[kind="primary"] { background: #00A86B !important; border: none !important; }
 
 # --- JUMBOTRON + LOGO ---
 st.markdown(f"""
@@ -92,7 +97,8 @@ st.markdown(f"""
 # --- INPUT ---
 st.markdown('<div class="input-card">', unsafe_allow_html=True)
 st.markdown('<h3 style="text-align:center; margin:0;">☁️ Upload Foto Produk</h3>', unsafe_allow_html=True)
-uploaded = st.file_uploader("", type=["jpg","jpeg","png"], accept_multiple_files=True, label_visibility="collapsed")
+# YANG BARU
+uploaded = st.file_uploader("Upload Foto Produk", type=["jpg","jpeg","png"], accept_multiple_files=True, label_visibility="collapsed")
 st.markdown('<div class="upload-box">⬆️ <b>Seret & lepas foto produk di sini</b><br>atau klik untuk pilih dari galeri • JPG/PNG • Bisa pilih banyak foto</div>', unsafe_allow_html=True)
 
 if uploaded:
